@@ -63,3 +63,57 @@
 
 ; ******************* END INITIALIZATION FOR ACL2s MODE ******************* ;
 ;$ACL2s-SMode$;ACL2s
+;;new definitions for merge-ordered, with insert ordered
+(defdata lor (listof rational))
+
+(definec orderedp (l :lor) :bool
+  (cond
+   ((endp (cdr l)) t)
+   (t (and (<= (car l) (cadr l)) (orderedp (rest l))))))
+
+;;insert an element into an ordered list in the right place
+(definec insert-ordered (elem :rational l :lor) :lor
+  :ic (orderedp l)
+  :oc (orderedp (insert-ordered elem l))
+  (cond
+   ((endp l) (list elem))
+   ((<= elem (car l)) (cons elem l))
+   (t (cons (car l) (insert-ordered elem (cdr l))))))
+(set-gag-mode nil)
+;mergeing ordered with repeated calls to insert-ordered
+;if add (orderedp l1) to the :ic, ACL2 can't prove the function contracts
+(definec merge-ordered-insert (l1 :lor l2 :lor) :lor
+  :ic (orderedp l2)
+  :oc (orderedp (merge-ordered-insert l1 l2))
+  (if (endp l1)
+    l2
+    (insert-ordered (car l1) (merge-ordered-insert (cdr l1) l2))))
+
+
+;;lemma 1
+;this theorm passes ACL2:
+;Lemma car-cdr-insert-orderd:
+;**explanation
+(defthm car-cdr-insert-orderd (implies (and (lorp a) (consp a) (orderedp a))
+                                      (equal (insert-ordered (car a) (cdr a))
+                                             a)))#|ACL2s-ToDo-Line|#
+
+
+;lemma 2
+;Lemma insert-with-merging:
+;when skipped this goes through fine
+(defthm insert-with-merging (implies (and (rationalp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
+                                     (equal (merge-ordered-insert (insert-ordered a b) c)
+                                            (insert-ordered a (merge-ordered-insert b c)))))
+;:hints (("Goal" :induct (lorp (insert-ordered a b))))
+                                     
+                                     
+
+
+;Official theorem trying to prove:
+(defthm -merge-ordered-inesrt-assoc 
+  (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
+           (equal (merge-ordered-insert (merge-ordered-insert a b) c)
+                  (merge-ordered-insert a (merge-ordered-insert b c)))))
+
+
