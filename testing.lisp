@@ -166,7 +166,19 @@
 (defthm -merge-ordered-inesrt-assoc 
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
            (equal (merge-ordered-insert (merge-ordered-insert a b) c)
-                  (merge-ordered-insert a (merge-ordered-insert b c)))))#|ACL2s-ToDo-Line|#
+                  (merge-ordered-insert a (merge-ordered-insert b c)))))
 
+;try commutitativity? YES!
+(defthm -merge-ordered-inesrt-comm
+  (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b))
+           (equal (merge-ordered-insert a b)
+                  (merge-ordered-insert b a))))#|ACL2s-ToDo-Line|#
+
+;semi-group? (to-try) (investivage)
+
+;;other properties to try and prove?
+;no inverse, 
+;semi-group?
+;others
 
 
