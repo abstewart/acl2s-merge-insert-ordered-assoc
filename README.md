@@ -5,7 +5,7 @@ Steve Liu
 
 Final project for CS 2800. Formally proving the associativity of a merge-ordered-insert function in ACL2s.
 
-This repo contains all of the work compiled from working on proving the theorem associativity of a merge-ordered-insert and goes alongside the paper on the proof. The main file for this repo is official_proof.lisp and contains all of the functions required for the main theorem alongside its necessary lemmas. The other files are used mainly for testing  and highlights all of the trials and tribulations required to get ACL2 to accept the main theorem. 
+This repo contains all of the work compiled from proving the associativity of a merge-ordered-insert and goes alongside the paper on the proof. The main file for this repo is official_proof.lisp and contains all of the functions required for the main theorem alongside its necessary lemmas. The other files are used mainly for testing  and highlights all of the trials and tribulations required to get ACL2 to accept the main theorem. 
 
 In order to run the code for our proof:
 1. Download official_proof.lisp
