@@ -1,5 +1,5 @@
 ;;Our main theorem to prove:
-(defthm -merge-ordered-inesrt-assoc 
+(defthm -merge-ordered-insert-assoc 
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
            (equal (merge-ordered-insert (merge-ordered-insert a b) c)
                   (merge-ordered-insert a (merge-ordered-insert b c)))))
