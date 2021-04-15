@@ -93,16 +93,14 @@
 ;;lemma 1.1, car-cdr-insert-orderd:
 (defthm car-cdr-insert-orderd
   (implies (and (lorp a) (consp a) (orderedp a))
-	   (equal (insert-ordered (car a) (cdr a))
-		  a)))#|ACL2s-ToDo-Line|#
+           (equal (insert-ordered (car a) (cdr a))
+                  a)))
 
-
-;;lemma 3.1, insert-with-merging:
-(defthm insert-with-merging
-  (implies (and (rationalp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
-	   (equal (merge-ordered-insert (insert-ordered a b) c)
-		  (insert-ordered a (merge-ordered-insert b c)))))
-
+;;lemma 3.1, insert-ordered-assoc
+(defthm insert-ordered-assoc
+  (implies (and (rationalp a) (rationalp b) (lorp c) (orderedp c))
+           (equal (insert-ordered a (insert-ordered b c))
+                  (insert-ordered b (insert-ordered a c)))))
 ;;lemma 2.1
 ;;one of three key checkpoints given by ACL2s
 (defthm pt2.1 
@@ -131,42 +129,42 @@
            (EQUAL (INSERT-ORDERED (CAR B)
                                   (INSERT-ORDERED A C))
                   (INSERT-ORDERED A (INSERT-ORDERED (CAR B) C)))))
-                                     
-                                     
+
 ;;lemma 2.3
 ;;one of three key checkpoints given by ACL2s
 (defthm pt1.3
   (IMPLIES
    (AND (RATIONALP (CAR B))
-	(RATIONAL-LISTP (CDR B))
-	(RATIONAL-LISTP C)
-	(ORDEREDP C)
-	(CONSP B)
-	(EQUAL (MERGE-ORDERED-INSERT (INSERT-ORDERED A (CDR B))
-				     C)
-	       (INSERT-ORDERED A (MERGE-ORDERED-INSERT (CDR B) C)))
-	(RATIONALP A)
-	(ACL2-NUMBERP (CADR B))
-	(<= (CAR B) (CADR B))
-	(ORDEREDP (CDR B))
-	(< (CAR B) A))
+        (RATIONAL-LISTP (CDR B))
+        (RATIONAL-LISTP C)
+        (ORDEREDP C)
+        (CONSP B)
+        (EQUAL (MERGE-ORDERED-INSERT (INSERT-ORDERED A (CDR B))
+                                     C)
+               (INSERT-ORDERED A (MERGE-ORDERED-INSERT (CDR B) C)))
+        (RATIONALP A)
+        (ACL2-NUMBERP (CADR B))
+        (<= (CAR B) (CADR B))
+        (ORDEREDP (CDR B))
+        (< (CAR B) A))
    (EQUAL (INSERT-ORDERED (CAR B)
-			  (INSERT-ORDERED A (MERGE-ORDERED-INSERT (CDR B) C)))
-	  (INSERT-ORDERED A
-			  (INSERT-ORDERED (CAR B)
-					  (MERGE-ORDERED-INSERT (CDR B) C))))))
+                          (INSERT-ORDERED A (MERGE-ORDERED-INSERT (CDR B) C)))
+          (INSERT-ORDERED A
+                          (INSERT-ORDERED (CAR B)
+                                          (MERGE-ORDERED-INSERT (CDR B) C))))))
 
 ;;lemma 1.2, insert-with-merging
 ;the lemma from the professional method that previously didn't pass
 (defthm insert-with-merging
   (implies (and (rationalp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
-	   (equal (merge-ordered-insert (insert-ordered a b) c)
-		  (insert-ordered a (merge-ordered-insert b c)))))
+           (equal (merge-ordered-insert (insert-ordered a b) c)
+                  (insert-ordered a (merge-ordered-insert b c)))))
 
 ;Official theorem trying to prove:
 (defthm merge-ordered-inesrt-assoc 
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
            (equal (merge-ordered-insert (merge-ordered-insert a b) c)
-                  (merge-ordered-insert a (merge-ordered-insert b c)))))
+                  (merge-ordered-insert a (merge-ordered-insert b c)))))#|ACL2s-ToDo-Line|#
+
 
 
