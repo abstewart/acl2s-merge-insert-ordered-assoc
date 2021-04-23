@@ -1,7 +1,10 @@
 # acl2s-merge-insert-ordered-assoc
 Andrew Briasco-Stewart\
+briasco-stewart.a@northeastern.edu\
 Christopher Swagler\
-Steve Liu
+swagler.c@northeastern.edu\
+Steve Liu\
+liu.steve@northeastern.edu
 
 Final project for CS 2800. Formally proving the associativity of a merge-ordered-insert function in ACL2s.
 
