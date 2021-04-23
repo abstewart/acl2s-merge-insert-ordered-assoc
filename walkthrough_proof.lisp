@@ -1,3 +1,46 @@
+#|
+walkthrough_proof.lisp
+a walkthrough of our official proof in logial order
+
+Authors:
+Andrew Briasco-Stewart
+briasco-stewart.a@northeastern.edu
+
+Christopher Swagler
+swagler.c@northeastern.edu
+
+Steve Liu
+liu.steve@northeastern.edu
+|#
+
+;;Function Definitions
+;;A data definition for a list-of rational
+(defdata lor (listof rational))
+
+;;A function to decide if a list-of rational is ordered
+(definec orderedp (l :lor) :bool
+  (cond
+   ((endp (cdr l)) t)
+   (t (and (<= (car l) (cadr l)) (orderedp (rest l))))))
+
+;;A function to correctly insert an element into an ordered list
+(definec insert-ordered (elem :rational l :lor) :lor
+  :ic (orderedp l)
+  :oc (orderedp (insert-ordered elem l))
+  (cond
+   ((endp l) (list elem))
+   ((<= elem (car l)) (cons elem l))
+   (t (cons (car l) (insert-ordered elem (cdr l))))))
+
+;A function to merge two  ordered lists of rational with repeated calls to insert-ordered
+(definec merge-ordered-insert (l1 :lor l2 :lor) :lor
+  :ic (orderedp l2)
+  :oc (orderedp (merge-ordered-insert l1 l2))
+  (if (endp l1)
+    l2
+    (insert-ordered (car l1) (merge-ordered-insert (cdr l1) l2))))
+
+
 ;;Our main theorem to prove:
 (defthm -merge-ordered-insert-assoc 
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
@@ -25,7 +68,7 @@ Proof by: Induction on (lorp a)
                   (equal (merge-ordered-insert (merge-ordered-insert a b) c)
                          (merge-ordered-insert a (merge-ordered-insert b c))))))
 
-;induction case (ACL2 fails with this one initially with counterexamples on a subgoal (**check)
+;induction case (ACL2 fails to admit this one with counterexamples on a subgoal)
 (thm (implies (and (not (endp a))
                    (implies (and (lorp (cdr a)) (orderedp (cdr a)) (lorp b) (orderedp b) (lorp c) (orderedp c))
                   (equal (merge-ordered-insert (merge-ordered-insert (cdr a) b) c)
@@ -97,7 +140,7 @@ Proof:
 		  a)))
 
 ;;Lemma 1.2, insert-with-merging
-;;This Lemma does not pass ACL2 (Fails with counterexamples on a subgoal) (**Check)
+;;This Lemma does not pass ACL2 (Fails under a top-level induction)
 (defthm insert-with-merging
   (implies (and (rationalp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
 	   (equal (merge-ordered-insert (insert-ordered a b) c)
@@ -136,7 +179,7 @@ Proof:
 
 
 ;;Lemma 2.3
-;;This Lemma doesn't pass ACL2 on its own, (** Check why)
+;;This Lemma doesn't pass ACL2 on its own (Fails with counterexamples on a subgoal)
 (defthm pt1.3
   (IMPLIES
    (AND (RATIONALP (CAR B))

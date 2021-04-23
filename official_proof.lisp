@@ -63,6 +63,20 @@
 
 ; ******************* END INITIALIZATION FOR ACL2s MODE ******************* ;
 ;$ACL2s-SMode$;ACL2s
+#|
+official_proof.lisp
+Official proof of merge-ordered-insert-assoc in ACL2s
+
+Authors:
+Andrew Briasco-Stewart
+briasco-stewart.a@northeastern.edu
+
+Christopher Swagler
+swagler.c@northeastern.edu
+
+Steve Liu
+liu.steve@northeastern.edu
+|#
 ;;A data definition for a list-of rational
 (defdata lor (listof rational))
 
