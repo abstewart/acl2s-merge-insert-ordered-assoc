@@ -21,7 +21,7 @@
 ;; with make-event. So, in order to avoid the use of progn! and trust
 ;; tags (which would not have been a big deal) in custom.lisp, I
 ;; decided to add this here.
-;; 
+;;
 ;; How to check (f-get-global 'guard-checking-on state)
 ;; (acl2::set-guard-checking :nowarn)
 (acl2::set-guard-checking :all)
@@ -64,57 +64,24 @@
 ; ******************* END INITIALIZATION FOR ACL2s MODE ******************* ;
 ;$ACL2s-SMode$;ACL2s
 
-;; The Church-Rosser Theorem in an ACL2-ish prover
+#|
+proposal.lisp
+Initial project proposal
 
-;; At the URL
-;; https://libkey.io/libraries/545/articles/15438718/full-text-file?utm_source=api_57
-;; (reached from NEU via
-;; https://onesearch.library.northeastern.edu/permalink/f/t09un1/TN_cdi_gale_infotracacademiconefile_A6895045)
-;; you will find a JACM paper describing a mechanized proof of the
-;; Church-Rosser theorem.
+Authors:
+Andrew Briasco-Stewart
+briasco-stewart.a@northeastern.edu
 
-;; You do not have to read this in its entirety, or even most of it.
+Christopher Swagler
+swagler.c@northeastern.edu
 
-;; You do not have to limit your reading to this paper; in fact there
-;; are scores of better places to start learning about the material
-;; foundational to understanding this paper.
+Steve Liu
+liu.steve@northeastern.edu
+|#
 
-;; But I want you to _see_ a non-trivial ACL2(-like) proof, and a
-;; published work about it.
+#| Part II Project Start-up |#
 
-;; 1. What is the Church-Rosser theorem? Give it to me in about a
-;; paragraph. Assume Statement 3.1 is completely incomprehensible to
-;; me, but assume further that I'd understand it if I started at the
-;; beginning of the paper and methodically worked my way there.
-
-#| 
-
-Answer: **do more reading / watch videos / attend OH
-
-
-|# 
-
-;; 2. Skim pages 508-522. Find some a theorem or definition in there
-;; that seems approachable given what you have learned from ACL2S and
-;; 2800, and explain what you think it's doing. If you can explain
-;; *where* it shows up in the context of the overall proof, that's
-;; even better, but I'm not even requiring that. 
-
-#| 
-
-Answer: 157? But it the last theorm and isn't doing much, 
-             just putting it all together
-        106? (find-m x n) searches through x to find m?
-        75?  (append x y) good ol' append function
-        16?   (subst x y n) "substitute x for y in n"... I think
-
-
-
-|# 
-
-#| Part II Project Start-up |# 
-
-#| 
+#|
 
 This part of your homework this week will /be/ to come up with your
 project proposal/suggestion. You should first read all of the prose
@@ -129,7 +96,7 @@ below this prose, a two to three paragraph statement including:
 - explain the general background(either the ACL2 code, or
   game/artifact/situation otherwise) that you want to investigate,
 
-- precisely what you want to show, 
+- precisely what you want to show,
 
 - that your initial searches revealed no prior art answering this
   question (if you're unclear, explain how yours will differ from
@@ -137,7 +104,7 @@ below this prose, a two to three paragraph statement including:
 
 - how you (think you) know that this project is in scope.
 
-|# 
+|#
 
 ;; Together as a group (if you have one) you will make a 15m
 ;; appointment to meet with either Josh, Ankit, Drew, or me the week
@@ -211,4 +178,3 @@ below this prose, a two to three paragraph statement including:
    ((< (car l1) (car l2)) (merge-ordered* (cdr l1) l2 (cons (car l1) acc)))
    (t (merge-ordered* l1 (cdr l2) (cons (car l2) acc)))))
   |#
-

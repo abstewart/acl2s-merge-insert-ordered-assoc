@@ -1,6 +1,6 @@
 #|
 walkthrough_proof.lisp
-a walkthrough of our official proof in logial order
+a walkthrough of our official proof in logical order
 
 Authors:
 Andrew Briasco-Stewart
@@ -42,7 +42,7 @@ liu.steve@northeastern.edu
 
 
 ;;Our main theorem to prove:
-(defthm -merge-ordered-insert-assoc 
+(defthm -merge-ordered-insert-assoc
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
            (equal (merge-ordered-insert (merge-ordered-insert a b) c)
                   (merge-ordered-insert a (merge-ordered-insert b c)))))
@@ -85,11 +85,11 @@ Exportation:
          (equal (merge-ordered-insert (merge-ordered-insert a b) c)
                 (merge-ordered-insert a (merge-ordered-insert b c)))))
 Context:
-C1. (lorp a) 
-C2. (orderedp a) 
-C3. (lorp b) 
-C4. (orderedp b) 
-C5. (lorp c) 
+C1. (lorp a)
+C2. (orderedp a)
+C3. (lorp b)
+C4. (orderedp b)
+C5. (lorp c)
 C6. (orderedp c)
 C7. (not (endp a))
 C8. (implies (and (lorp (cdr a)) (orderedp (cdr a)) (lorp b) (orderedp b) (lorp c) (orderedp c))
@@ -134,7 +134,7 @@ Proof:
 
 ;;Lemma 1.1, car-cdr-insert-ordered
 ;;This theorem passes ACL2s as-is
-(defthm car-cdr-inseert-ordered
+(defthm car-cdr-insert-ordered
   (implies (and (lorp a) (consp a) (orderedp a))
 	   (equal (insert-ordered (car a) (cdr a))
 		  a)))
@@ -149,8 +149,8 @@ Proof:
 ;;When the above lemma fails in ACL2s, it provides 3 key checkpoints, creating our 3 2nd order Lemmas
 
 ;;Lemma 2.1
-;;This lemma passes ACL2s when written as a seperate lemma, go figure
-(defthm pt1.1 
+;;This lemma passes ACL2s when written as a separate lemma, go figure
+(defthm pt1.1
 (IMPLIES (AND (RATIONALP (CAR B))
 	      (RATIONAL-LISTP C)
 	      (ORDEREDP C)
@@ -164,7 +164,7 @@ Proof:
 
 ;;Lemma 2.2
 ;;This lemma passes ACL2s when written as a seperate lemma, go figure
-(defthm pt1.2 
+(defthm pt1.2
   (IMPLIES (AND (RATIONALP (CAR B))
                 (NOT (CDR B))
                 (RATIONAL-LISTP C)
@@ -214,5 +214,3 @@ Proof:
 
 ;;With the above lemma, all previous lemmas are now accepted by ACL2s,
 ;;and our main theorem is accepted as well.
-
-
