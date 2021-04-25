@@ -21,7 +21,7 @@
 ;; with make-event. So, in order to avoid the use of progn! and trust
 ;; tags (which would not have been a big deal) in custom.lisp, I
 ;; decided to add this here.
-;; 
+;;
 ;; How to check (f-get-global 'guard-checking-on state)
 ;; (acl2::set-guard-checking :nowarn)
 (acl2::set-guard-checking :all)
@@ -63,6 +63,21 @@
 
 ; ******************* END INITIALIZATION FOR ACL2s MODE ******************* ;
 ;$ACL2s-SMode$;ACL2s
+
+#|
+project_work.lisp
+All of our work leading up to our successful proof
+
+Authors:
+Andrew Briasco-Stewart
+briasco-stewart.a@northeastern.edu
+
+Christopher Swagler
+swagler.c@northeastern.edu
+
+Steve Liu
+liu.steve@northeastern.edu
+|#
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;******************** Initial Work ***********************;

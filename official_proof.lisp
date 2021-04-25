@@ -21,7 +21,7 @@
 ;; with make-event. So, in order to avoid the use of progn! and trust
 ;; tags (which would not have been a big deal) in custom.lisp, I
 ;; decided to add this here.
-;; 
+;;
 ;; How to check (f-get-global 'guard-checking-on state)
 ;; (acl2::set-guard-checking :nowarn)
 (acl2::set-guard-checking :all)
@@ -77,6 +77,7 @@ swagler.c@northeastern.edu
 Steve Liu
 liu.steve@northeastern.edu
 |#
+
 ;;A data definition for a list-of rational
 (defdata lor (listof rational))
 
@@ -104,8 +105,8 @@ liu.steve@northeastern.edu
     (insert-ordered (car l1) (merge-ordered-insert (cdr l1) l2))))
 
 
-;;lemma 1.1, car-cdr-insert-orderd:
-(defthm car-cdr-insert-orderd
+;;lemma 1.1, car-cdr-insert-ordered:
+(defthm car-cdr-insert-ordered
   (implies (and (lorp a) (consp a) (orderedp a))
            (equal (insert-ordered (car a) (cdr a))
                   a)))
@@ -117,7 +118,7 @@ liu.steve@northeastern.edu
                   (insert-ordered b (insert-ordered a c)))))
 ;;lemma 2.1
 ;;one of three key checkpoints given by ACL2s
-(defthm pt2.1 
+(defthm pt2.1
   (IMPLIES (AND (RATIONALP (CAR B))
                 (RATIONAL-LISTP C)
                 (ORDEREDP C)
@@ -131,7 +132,7 @@ liu.steve@northeastern.edu
 
 ;;lemma 2.2
 ;;one of three key checkpoints given by ACL2s
-(defthm pt1.2 
+(defthm pt1.2
   (IMPLIES (AND (RATIONALP (CAR B))
                 (NOT (CDR B))
                 (RATIONAL-LISTP C)
@@ -175,10 +176,7 @@ liu.steve@northeastern.edu
                   (insert-ordered a (merge-ordered-insert b c)))))
 
 ;Official theorem trying to prove:
-(defthm merge-ordered-inesrt-assoc 
+(defthm merge-ordered-insert-assoc
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
            (equal (merge-ordered-insert (merge-ordered-insert a b) c)
                   (merge-ordered-insert a (merge-ordered-insert b c)))))#|ACL2s-ToDo-Line|#
-
-
-
