@@ -42,7 +42,7 @@ liu.steve@northeastern.edu
 
 
 ;;Our main theorem to prove:
-(defthm -merge-ordered-insert-assoc
+(defthm merge-ordered-insert-assoc
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
            (equal (merge-ordered-insert (merge-ordered-insert a b) c)
                   (merge-ordered-insert a (merge-ordered-insert b c)))))
@@ -108,7 +108,7 @@ Goal:
 ;professional method sketch where we assume lemmas that don't exist yet
 Proof:
 (merge-ordered-insert (merge-ordered-insert a b) c)
-= {def -merge-ordered-insert}
+= {def merge-ordered-insert}
 (merge-ordered-insert
   (if (endp a)
     b
