@@ -492,7 +492,7 @@ Goal:
 ;professional method proof that seems to work with a potential lemma
 Proof:
 (merge-ordered-insert (merge-ordered-insert a b) c)
-= {def -merge-ordered-insert}
+= {def merge-ordered-insert}
 (merge-ordered-insert
   (if (endp a)
     b
