@@ -860,18 +860,18 @@ proven with these other sub-lemmas.
 ;:hints (("Goal" :induct (lorp (insert-ordered a b))))
 
 ;Official theorem trying to prove:
-(defthm -merge-ordered-inesrt-assoc
+(defthm merge-ordered-insert-assoc
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b) (lorp c) (orderedp c))
            (equal (merge-ordered-insert (merge-ordered-insert a b) c)
                   (merge-ordered-insert a (merge-ordered-insert b c)))))
 
 ;try commutitativity? YES!
-(defthm -merge-ordered-inesrt-comm
+(defthm merge-ordered-insert-comm
   (implies (and (lorp a) (orderedp a) (lorp b) (orderedp b))
            (equal (merge-ordered-insert a b)
                   (merge-ordered-insert b a))))
 
-;semi-group? (to-try) (investivage)
+;semi-group? (to-try) (investigate)
 
 ;;other properties to try and prove?
 ;no inverse,
